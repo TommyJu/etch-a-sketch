@@ -1,0 +1,25 @@
+body {
+
+}
+
+#canvas {
+    display: flex;
+    flex-direction: column;
+    width: 960px;
+    height: 960px;
+}
+
+.square-div {
+    flex: 1;
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+}
+
+.row-div {
+    display: flex;
+    flex: 1;
+    border-style: solid;
+    border-width: 1px;
+    border-color: red;
+}
