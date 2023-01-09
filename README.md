@@ -1,1 +1,2 @@
 # etch-a-sketch
+Introduction: By the end of this project we will have an interactive webpage that will work similarly to an etch-a-sketch. By using what I've learned about DOM manipulation, we can allow the user to draw an image by changing the colour of square divs arranged in a grid. This grid will be our canvas and the user can scale the grid to size by choosing how many square divs make up each side of the grid.
