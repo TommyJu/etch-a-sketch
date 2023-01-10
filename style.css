@@ -1,5 +1,7 @@
 body {
-
+    height: 100vh;
+    width: 100vw;
+    background-color: #404040;
 }
 
 #canvas {
@@ -7,21 +9,20 @@ body {
     flex-direction: column;
     width: 960px;
     height: 960px;
+    background-color: white;
 }
 
 .square-div {
     flex: 1;
-    border-style: solid;
-    border-width: 1px;
-    border-color: black;
+    margin: 0;
+    padding: 0;
 }
 
 .row-div {
     display: flex;
     flex: 1;
-    border-style: solid;
-    border-width: 1px;
-    border-color: red;
+    margin: 0;
+    padding: 0;
 }
 
 .slider-container {
@@ -30,4 +31,31 @@ body {
 
 #slider {
 
+}
+
+#controls {
+
+}
+
+.buttons {
+
+}
+
+#color-1, #color-2, #color-3{
+    background-color: white;
+}
+
+.previous-color-container {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.previous-color {
+    width: 1rem;
+    height: 1rem;
+    background-color: white;
+    border-color: black;
+    border-width: 1px;
+    border-style: solid;
 }
