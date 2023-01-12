@@ -1,15 +1,87 @@
 body {
+    font-family: 'Dancing Script', cursive;
     height: 100vh;
     width: 100vw;
-    background-color: #404040;
+    background-color: white;
+    display: flex;
+    flex-wrap: wrap-reverse;
+    align-items: center;
+    justify-content: space-evenly;
+    align-content: center;
+    margin: 0;
+    padding: 0;
+}
+
+button {
+    display:inline-block;
+    padding:0.35em 1.2em;
+    border:0.1em solid #FFFFFF;
+    margin:0 0.3em 0.3em 0;
+    border-radius:0.12em;
+    box-sizing: border-box;
+    font-family: 'Dancing Script', cursive;
+    font-size: large;
+    color:#FFFFFF;
+    background-color: black;
+    text-align:center;
+    transition: all 0.2s;
+    border-style: solid;
+    border-width: 2px;
+    border-color: black;
+}
+
+button:hover {
+    color:#000000;
+    background-color:#FFFFFF;
+    }
+
+#color-picker {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: none;
+    width: 3rem;
+    height: 3rem;
+    background-color: white;
+}
+
+#color-picker::-webkit-color-swatch {
+    border-radius: 50%
 }
 
 #canvas {
     display: flex;
     flex-direction: column;
-    width: 960px;
-    height: 960px;
+    height: 320px;
+    width: 320px;
     background-color: white;
+    margin: 0.5rem;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: black;
+}
+
+
+@media (min-width: 540px) {
+    #canvas {
+        height: 480px;
+        width: 480px;
+    }
+
+    h1 {
+        font-size: 38px;
+    }
+}
+
+@media (min-width: 900px) {
+    #canvas {
+        height: 600px;
+        width: 600px;
+    }
+
+    h1 {
+        font-size: 48px;
+    }
 }
 
 .square-div {
@@ -26,7 +98,13 @@ body {
 }
 
 .slider-container {
+    display: flex;
+    justify-content: flex-start;
+}
 
+.slider-container div {
+    display: flex;
+    gap: 0.5rem;
 }
 
 #slider {
@@ -34,14 +112,23 @@ body {
 }
 
 #controls {
-
+    margin: 0.5rem;
 }
 
 .buttons {
-
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.5rem;
 }
 
-#color-1, #color-2, #color-3{
+.buttons div {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Previous color divs are initially white */
+#color-1, #color-2, #color-3, #color-4, #color-5{
     background-color: white;
 }
 

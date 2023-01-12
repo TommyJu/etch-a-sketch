@@ -6,26 +6,34 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Etch-A-Sketch</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+    <style> @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap'); </style>
   </head>
   <body>
-    <div id="canvas"></div>
     <div id="controls">
+        <h1>Etch-A-Sketch</h1>
         <div class="slider-container">
-            <input type="range" min="16" max="64" value="16"
-            id="slider">
-            <p class="slider-value">16</p>
+          <div>
+            <input type="range" min="16" max="64" value="16" id="slider">
+            <p class="slider-value"></p>
+          </div>
         </div>
         <div class="buttons">
-            <button id="draw-black">Black</button>
-            <button id="eraser">Eraser</button>
-            <input type="color" id="color-picker">
-            <div class="previous-color-container">
-                <div id='color-1' class="previous-color"></div>
-                <div id='color-2' class="previous-color"></div>
-                <div id='color-3' class="previous-color"></div>
-                <p>Previous Colors<p>
-            </div>
+          <button id="draw-black">Black</button>
+          <button id="eraser">Eraser</button>
+          <input type="color" id="color-picker" value="#62ba46">
         </div>
+        <div class="previous-color-container">
+          <div id='color-1' class="previous-color"></div>
+          <div id='color-2' class="previous-color"></div>
+          <div id='color-3' class="previous-color"></div>
+          <div id='color-4' class="previous-color"></div>
+          <div id='color-5' class="previous-color"></div>
+          <p>Previous Colors<p>
+        </div>
+        <button id="clear-canvas">Clear Canvas</button>
     </div>
+    <div id="canvas"></div>
 	<script src="script.js"></script>
   </body>

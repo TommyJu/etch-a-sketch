@@ -6,7 +6,8 @@ const sliderValue = document.querySelector('.slider-value');
 const eraser = document.querySelector('#eraser');
 const drawBlack = document.querySelector('#draw-black');
 const colorPicker = document.querySelector('#color-picker');
-const previousColorDivs = document.querySelectorAll('#color-1, #color-2, #color-3');
+const previousColorDivs = document.querySelectorAll('#color-1, #color-2, #color-3, #color-4, #color-5');
+const clearCanvas = document.querySelector('#clear-canvas');
 // Tracking mouse up and mouse down to a create a hold effect for drawing
 let mouseIsDown = false;
 
@@ -18,9 +19,6 @@ body.addEventListener('mousedown', () => {
 });
 
 // Canvas creation --------------------
-
-// controls # of rowDivs and # squareDivs per row are created in the canvas div
-let canvasSize = 16;
 
 function createCanvas(canvasSize) {
     // Creates rowDivs and appends to canvas
@@ -67,12 +65,17 @@ function clearChildren(element) {
         element.removeChild(element.lastElementChild);
     }
 }
-    // Clears all children from the canvas and creates a new one with specified size
-slider.oninput = () => {
-    //Display slider value text
-    sliderValue.textContent = slider.value;
+// Initial slider value text
+sliderValue.textContent = `${slider.value} x ${slider.value}`;
+// Clears all children from the canvas and creates a new one with specified size
+slider.onchange = () => {
+    
     clearChildren(canvas);
     createCanvas(slider.value);
+}
+//Display slider value text
+slider.oninput = () => {
+    sliderValue.textContent = `${slider.value} x ${slider.value}`;
 }
 
 eraser.addEventListener('click', () => {
@@ -90,7 +93,7 @@ colorPicker.oninput = () => {
 colorPicker.addEventListener('click', () => {
     drawColor = colorPicker.value;
     //prevents the same color from being added to the array twice
-    if (colorPicker.value != previousColors[2]) {
+    if (colorPicker.value != previousColors[4]) {
         previousColors.shift();
         previousColors.push(drawColor);
         previousColorDivs.forEach((colorDiv, index) => {
@@ -100,17 +103,24 @@ colorPicker.addEventListener('click', () => {
 })
 
 // Previous colors
-    // previous color stored as 'prevColor div' background color
-    // We can have a 3 element array that stores the 3 previous colors as a hex value
+    // previous color stored as background color of divs in previousColorDivs
+    // We can have a 5 element array that stores the 5 previous colors as hex values
     // on click from the color wheel, push the color value onto array and delete
     // the first value. Then, overwrite the prevColor divs background colors
     // according to the array,
 
-let previousColors = ['white', 'white', 'white'];
+let previousColors = ['white', 'white', 'white', 'white', 'white'];
 previousColorDivs.forEach((colorDiv) => {
     colorDiv.addEventListener('click', () => {
         drawColor = colorDiv.style.backgroundColor;
     })
 })
 
-createCanvas(canvasSize);
+// Clear canvas
+
+clearCanvas.addEventListener('click', () => {
+    clearChildren(canvas);
+    createCanvas(slider.value);
+});
+
+createCanvas(slider.value);
