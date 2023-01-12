@@ -30,10 +30,15 @@ button {
     border-color: black;
 }
 
-button:hover {
+#draw-black:hover, #clear-canvas:hover {
     color:#000000;
     background-color:#FFFFFF;
     }
+
+.button-toggle {
+    color:#000000;
+    background-color:#FFFFFF;
+}
 
 #color-picker {
     -webkit-appearance: none;
@@ -62,7 +67,7 @@ button:hover {
 }
 
 
-@media (min-width: 540px) {
+@media (min-width: 880px) {
     #canvas {
         height: 480px;
         width: 480px;
@@ -73,10 +78,10 @@ button:hover {
     }
 }
 
-@media (min-width: 900px) {
+@media (min-width: 980px) {
     #canvas {
-        height: 600px;
-        width: 600px;
+        height: 580px;
+        width: 580px;
     }
 
     h1 {

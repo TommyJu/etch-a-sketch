@@ -8,6 +8,7 @@ const drawBlack = document.querySelector('#draw-black');
 const colorPicker = document.querySelector('#color-picker');
 const previousColorDivs = document.querySelectorAll('#color-1, #color-2, #color-3, #color-4, #color-5');
 const clearCanvas = document.querySelector('#clear-canvas');
+const shader = document.querySelector('#shader')
 // Tracking mouse up and mouse down to a create a hold effect for drawing
 let mouseIsDown = false;
 
@@ -30,6 +31,8 @@ function createCanvas(canvasSize) {
         for (let i = 0; i < canvasSize; i++) {
             const squareDiv = document.createElement('div');
             squareDiv.classList.add('square-div');
+            squareDiv.opacity = 0;
+            squareDiv.color = 'white';
             // Event listeners for square divs
                 //Activates when user holds mousedown and drags mouse over square
             squareDiv.addEventListener('mouseover', (e) => {
@@ -40,6 +43,10 @@ function createCanvas(canvasSize) {
             // Activates when user clicks on square or mousedowns on a square
             squareDiv.addEventListener('mousedown', (e) => {
                 draw(e.target, drawColor);
+            // Touch event listener
+            squareDiv.addEventListener('touchstart', (e) => {
+                draw(e.target, drawColor);
+            })
             })            
             rowDiv.append(squareDiv);
         }
@@ -49,11 +56,29 @@ function createCanvas(canvasSize) {
 
 // variable allows us to draw in any color
 let drawColor = 'black';
-
 // Creating a function to draw/change color of divs
 function draw(element, drawColor) {
-    console.log(element);
-    element.style.backgroundColor = drawColor;
+    // An active eraser will override the shader
+    // Shader will reset the opacity if trying to shade with a new color
+    if (shaderIsActive && !eraserIsActive && (element.color != drawColor)) {
+        element.opacity = 0.2;
+        element.style.opacity = element.opacity;
+    }
+    else if (shaderIsActive && !eraserIsActive && (element.opacity < 1)) {
+        element.opacity += 0.2;
+        element.style.opacity = element.opacity;
+        
+    }
+    else if (eraserIsActive) {
+        element.opacity = 0;
+        element.style.opacity = element.opacity;
+    }
+    else {
+        element.opacity = 1;
+        element.style.opacity = element.opacity;
+    }
+    element.color = drawColor;
+    element.style.backgroundColor = element.color;
 };
 
 // User controls --------------------------------------
@@ -77,9 +102,19 @@ slider.onchange = () => {
 slider.oninput = () => {
     sliderValue.textContent = `${slider.value} x ${slider.value}`;
 }
-
+let eraserIsActive = false;
+let saveColor;
 eraser.addEventListener('click', () => {
-    drawColor = 'white';
+    if (eraserIsActive) {
+        eraserIsActive = false;
+        drawColor = saveColor;
+    }
+    else {
+        eraserIsActive = true;
+        saveColor = drawColor;
+        drawColor = 'white';
+    }
+    eraser.classList.toggle('button-toggle');
 })
 
 drawBlack.addEventListener('click', () => {
@@ -117,10 +152,29 @@ previousColorDivs.forEach((colorDiv) => {
 })
 
 // Clear canvas
-
 clearCanvas.addEventListener('click', () => {
     clearChildren(canvas);
     createCanvas(slider.value);
 });
+
+// Shading feature
+    // If the color of the div we are trying to shade is white
+    // draw the colour like we normally do however
+    // give each squareDiv an 'opacity' an accumulator that
+    // increments by 20.
+    // add an if statement in our draw function that will
+    // check if our shader button is active, if so, increment
+    // opacity accumulator and assign squareDiv opacity 
+let shaderIsActive = false;
+shader.addEventListener('click', () => {
+    if (shaderIsActive) {
+        shaderIsActive = false;
+    }
+    else {
+        shaderIsActive = true;
+    }
+    console.log(shaderIsActive);
+    shader.classList.toggle('button-toggle');
+})
 
 createCanvas(slider.value);
