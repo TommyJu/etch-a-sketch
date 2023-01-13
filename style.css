@@ -54,6 +54,8 @@ button {
 }
 
 #canvas {
+    /* Prevents scrolling when user tries to draw */
+    touch-action: none;
     display: flex;
     flex-direction: column;
     height: 320px;

@@ -43,10 +43,16 @@ function createCanvas(canvasSize) {
             // Activates when user clicks on square or mousedowns on a square
             squareDiv.addEventListener('mousedown', (e) => {
                 draw(e.target, drawColor);
-            // Touch event listener
-            squareDiv.addEventListener('touchstart', (e) => {
-                draw(e.target, drawColor);
             })
+            // Touch event listener
+            squareDiv.addEventListener('touchmove', (e) => {
+                let firstTouchElement = e.changedTouches[0];
+                let targetElement = document.elementFromPoint(firstTouchElement.clientX, firstTouchElement.clientY);
+                // ensures that only squareDivs are coloured
+                if (canvas.contains(targetElement) && targetElement != canvas) {
+                    draw(targetElement, drawColor);
+                }
+
             })            
             rowDiv.append(squareDiv);
         }
@@ -63,7 +69,7 @@ function draw(element, drawColor) {
     if (shaderIsActive && !eraserIsActive && (element.color != drawColor)) {
         element.opacity = 0.2;
         element.style.opacity = element.opacity;
-    }
+    } // elements are limited to an opacity of 1 (100%)
     else if (shaderIsActive && !eraserIsActive && (element.opacity < 1)) {
         element.opacity += 0.2;
         element.style.opacity = element.opacity;
