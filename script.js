@@ -124,6 +124,19 @@ eraser.addEventListener('click', () => {
 })
 
 drawBlack.addEventListener('click', () => {
+    // prevents black and white from being added to previousColors
+    if (drawColor != 'black' &&
+        drawColor != '#000000' &&
+        drawColor != 'white' &&
+        drawColor != '#ffffff' &&
+        drawColor != previousColors[4]) {
+            console.log(drawColor);
+            previousColors.shift();
+            previousColors.push(drawColor);
+            previousColorDivs.forEach((colorDiv, index) => {
+                colorDiv.style.backgroundColor = previousColors[index];
+            })
+        }
     drawColor = 'black';
 })
 
@@ -134,13 +147,18 @@ colorPicker.oninput = () => {
 colorPicker.addEventListener('click', () => {
     drawColor = colorPicker.value;
     //prevents the same color from being added to the array twice
-    if (colorPicker.value != previousColors[4]) {
-        previousColors.shift();
-        previousColors.push(drawColor);
-        previousColorDivs.forEach((colorDiv, index) => {
-            colorDiv.style.backgroundColor = previousColors[index];
-        })
-    }
+    if (drawColor != 'black' &&
+        drawColor != '#000000' &&
+        drawColor != 'white' &&
+        drawColor != '#ffffff' &&
+        colorPicker.value != previousColors[4]) {
+            console.log(drawColor);
+            previousColors.shift();
+            previousColors.push(drawColor);
+            previousColorDivs.forEach((colorDiv, index) => {
+                colorDiv.style.backgroundColor = previousColors[index];
+            })
+        }
 })
 
 // Previous colors

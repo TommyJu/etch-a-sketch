@@ -30,10 +30,19 @@ button {
     border-color: black;
 }
 
-#draw-black:hover, #clear-canvas:hover {
+/* button feedback for touch devices */
+#draw-black:active, #clear-canvas:active {
     color:#000000;
     background-color:#FFFFFF;
+}
+
+/* Limit hover pseudo class to only the mouse */
+@media (hover: hover) and (pointer: fine) {
+    #draw-black:hover, #clear-canvas:hover {
+        color:#000000;
+        background-color:#FFFFFF;
     }
+}
 
 .button-toggle {
     color:#000000;
