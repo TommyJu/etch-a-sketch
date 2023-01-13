@@ -130,7 +130,6 @@ drawBlack.addEventListener('click', () => {
         drawColor != 'white' &&
         drawColor != '#ffffff' &&
         drawColor != previousColors[4]) {
-            console.log(drawColor);
             previousColors.shift();
             previousColors.push(drawColor);
             previousColorDivs.forEach((colorDiv, index) => {
@@ -152,7 +151,6 @@ colorPicker.addEventListener('click', () => {
         drawColor != 'white' &&
         drawColor != '#ffffff' &&
         colorPicker.value != previousColors[4]) {
-            console.log(drawColor);
             previousColors.shift();
             previousColors.push(drawColor);
             previousColorDivs.forEach((colorDiv, index) => {
@@ -197,7 +195,6 @@ shader.addEventListener('click', () => {
     else {
         shaderIsActive = true;
     }
-    console.log(shaderIsActive);
     shader.classList.toggle('button-toggle');
 })
 
