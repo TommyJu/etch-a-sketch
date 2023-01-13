@@ -8,7 +8,8 @@ const drawBlack = document.querySelector('#draw-black');
 const colorPicker = document.querySelector('#color-picker');
 const previousColorDivs = document.querySelectorAll('#color-1, #color-2, #color-3, #color-4, #color-5');
 const clearCanvas = document.querySelector('#clear-canvas');
-const shader = document.querySelector('#shader')
+const shader = document.querySelector('#shader');
+const gridLines = document.querySelector('#grid-lines');
 // Tracking mouse up and mouse down to a create a hold effect for drawing
 let mouseIsDown = false;
 
@@ -196,6 +197,21 @@ shader.addEventListener('click', () => {
         shaderIsActive = true;
     }
     shader.classList.toggle('button-toggle');
+})
+
+// Enable grid lines button
+    // the canvas's children are rowDivs
+    // each rowDiv contains the squareDivs that the user draws on
+    // 'gridLines' toggles a border for all squareDivs to create a grid
+let rowDivs = canvas.children;
+let rowDivsArray = Array.from(rowDivs);
+gridLines.addEventListener('click', () => {
+    for (let i = 0; i < rowDivs.length; i++) {
+        let rowDivChildren = rowDivs[i].children;
+        for (let i = 0; i < rowDivChildren.length; i++) {
+            rowDivChildren[i].classList.toggle('grid-toggle');
+        }
+    }
 })
 
 createCanvas(slider.value);

@@ -49,6 +49,12 @@ button {
     background-color:#FFFFFF;
 }
 
+.grid-toggle {
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.3);
+    border-width: 1px;
+}
+
 #color-picker {
     -webkit-appearance: none;
     -moz-appearance: none;
